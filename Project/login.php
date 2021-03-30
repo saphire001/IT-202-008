@@ -7,7 +7,7 @@
     <input type="submit" name="login" value="Login"/>
 </form>
 
-<?php require_once(__DIR__ . "/partials/nav.php"); ?>
+<?php require_once(__DIR__ . "/Partials/nav.php"); ?>
     <form method="POST">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required/>

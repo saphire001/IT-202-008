@@ -79,4 +79,4 @@ if (!isset($username)) {
         <input type="password" id="p2" name="confirm" required/>
         <input type="submit" name="register" value="Register"/>
     </form>
-<?php require(__DIR__ . "/Partials/flash.php");
+<?php require(__DIR__ . "/partials/flash.php");
