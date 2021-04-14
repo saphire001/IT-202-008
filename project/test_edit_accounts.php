@@ -9,11 +9,11 @@ if (!has_role("Admin")) {
 
 <form method="POST">
 <label>Account Number</label>
-    <input type = "number" name = "ANum"  required maxlength="12" value = "<?php echo $result ["ANum"]?>"/>
+    <input type = "number" name = "account_number"  required maxlength="12" value = "<?php echo $result ["account_number"]?>"/>
     <label>Account Type</label>
-    <input type = "text" name = "ATyp"  required maxlength="20" value = "<?php echo $result ["ATyp"]?>"/>
+    <input type = "text" name = "account_type"  required maxlength="20" value = "<?php echo $result ["account_type"]?>"/>
     <label>Balance</label>
-    <input type = "number" name = "Bal" min = "0.00" value = "<?php echo $result ["Bal"]?>"/>
+    <input type = "number" name = "balance" min = "0.00" value = "<?php echo $result ["balance"]?>"/>
 	<input type="submit" name="save" value="Update"/>
 </form>
 
@@ -25,14 +25,14 @@ if(isset($_GET["id"])){
 
 <?php
 if(isset($_POST["save"])){
-    $AN = $_POST["ANum"];
-    $ATy = $_POST["ATyp"]; 
-    $BA = $_POST["Bal"]; 
+    $AN = $_POST["account_number"];
+    $ATy = $_POST["account_type"]; 
+    $BA = $_POST["balance"]; 
     $user = get_user_id();
     $db = getDB();
 
     if(isset($id)){
-        $stmt = $db->prepare ("UPDATE Accounts set ANun=:AN, ATyp=:ATy, Bal=:BA where id = :id"); 
+        $stmt = $db->prepare ("UPDATE Accounts set account_number=:AN, account_type=:ATy, balance=:BA where id = :id"); 
         $r = $stmt->execute([":AN" => $AN, ":ATy" => $ATy, ":BA" => $BA, ":id" => $id]); 
 
         if($r){
