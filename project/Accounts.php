@@ -3,7 +3,8 @@
 $db = getDB();
 $U_id =  get_user_id();
 
-echo $U_id; 
+$stmt = $db -> prepare ("SELECT account_number, account_type, balance WHERE user_id = :user"); 
+echo $stmt
 
 ?>
 <?php require(__DIR__ . "/partials/flash.php");?>
