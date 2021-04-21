@@ -7,7 +7,12 @@ $stmt = $db -> prepare ("SELECT account_number, account_type, balance WHERE user
 $stmt->execute([":user" => get_user_id()]);
 $r = $stmt->fetch(PDO::FETCH_ASSOC);
 
-echo $r; 
+if($r)
+{
+    echo $r['account_number'];
+    echo $r['accunt_type'];
+    echo $r['balance']; 
+}
 
 ?>
 <?php require(__DIR__ . "/partials/flash.php");?>
