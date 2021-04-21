@@ -9,10 +9,18 @@ $r = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if($r)
 {
-    echo $r['account_number'];
-    echo $r['accunt_type'];
-    echo $r['balance']; 
+    $AN = $r['account_number'];
+     $ATy = $r['accunt_type'];
+     $BA = $r['balance']; 
 }
+else
+{
+    echo E;
+}
+
+echo $AN;
+echo $ATy;
+echo $BA;
 
 ?>
 <?php require(__DIR__ . "/partials/flash.php");?>
