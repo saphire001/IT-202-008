@@ -3,7 +3,7 @@
 $db = getDB();
 $U_id =  get_user_id();
 
-echo $U_id; 
-
+//echo $U_id; 
+echo get_user_id()
 ?>
 <?php require(__DIR__ . "/partials/flash.php");?>
