@@ -19,7 +19,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     $stmt = $db -> prepare("SELECT account_number, account_type, balance from Accounts Where user_id like :q LIMIT 5"); 
     $r = $stmt -> execute([":q" => "%$query%"]); 
     if($r){
-        $results = $stmt -> fetchAll(POD::FETCH_ASSOC); 
+        $results = $stmt -> fetchAll(PDO::FETCH_ASSOC); 
     } 
     else{
         flash("Issue with fetching data");
