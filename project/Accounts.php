@@ -4,6 +4,7 @@ $db = getDB();
 $U_id =  get_user_id();
 
 //echo $U_id; 
-echo get_user_id()
+echo get_user_id();
+echo get_account_balance();
 ?>
 <?php require(__DIR__ . "/partials/flash.php");?>

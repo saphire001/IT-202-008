@@ -47,6 +47,13 @@ function safer_echo($var) {
     echo htmlspecialchars($var, ENT_QUOTES, "UTF-8");
 }
 
+function get_account_balance() {
+    if(is_logged_in() && isset($_SESSION["account"]["balance"])) {
+        return $_SESSION["account"]["balance"]; 
+    }
+    return -1; 
+}
+
 //for flash feature
 function flash($msg) {
     if (isset($_SESSION['flash'])) {
