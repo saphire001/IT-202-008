@@ -22,7 +22,7 @@ if (isset($_POST["search"]) && !empty($query)) {
         $results = $stmt -> fetchAll(POD::FETCH_ASSOC); 
     } 
     else{
-        flash("Issue with fetching data")
+        flash("Issue with fetching data");
     }
 }
 ?>
