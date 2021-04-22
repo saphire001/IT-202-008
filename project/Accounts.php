@@ -2,6 +2,9 @@
 <?php
 $db = getDB();
 $U_id =  get_user_id();
+$AN = $_POST["account_number"]; 
+$ATy = $_POST["account_type"]; 
+$BA = $_POST["balance"]; 
 
 $stmt = $db -> prepare ("SELECT account_number, account_type, balance WHERE user_id = :user"); 
 $stmt->execute([":user" => get_user_id()]);
@@ -15,7 +18,7 @@ if($r)
 }
 else
 {
-    echo E;
+
 }
 
 echo $AN;
