@@ -48,8 +48,8 @@ function safer_echo($var) {
 }
 
 function get_account_balance() {
-    if(is_logged_in() && isset($_SESSION["account"]["balance"])) {
-        return $_SESSION["account"]["balance"]; 
+    if(is_logged_in() && isset($_SESSION["user"]["balance"])) {
+        return $_SESSION["user"]["balance"]; 
     }
     return -1; 
 }
