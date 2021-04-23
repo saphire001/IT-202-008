@@ -30,8 +30,8 @@ ob_end_flush();
     <input name = "query" placeholder = "Search" value = "<?php safer_echo($query);?>"/>
     <input type = "submit" value = "Search" name = "search"/>
 </form>
-
-    <h3 class="text-center mt-4 mb-4">Accounts</h3>
+<h3 class="text-center mt-4 mb-4">Accounts</h3>
+>
 
     <?php if (count($results) > 0): ?>
       <table class="table table-striped">
@@ -59,4 +59,4 @@ ob_end_flush();
       <p>You don't have any accounts.</p>
     <?php endif; ?>
 
-<?php require __DIR__ . "/partials/flash.php"; ?>
+<?php require(__DIR__ . "/partials/flash.php");?>
