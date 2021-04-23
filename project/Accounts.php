@@ -31,29 +31,32 @@ if (isset($_POST["search"]) && !empty($query)) {
     <input name = "query" placeholder = "Search" value = "<?php safer_echo($query);?>"/>
     <input type = "submit" value = "Search" name = "search"/>
 </form>
+<h3 class="text-center mt-4 mb-4">Accounts</h3>
 
-<div class = "results"> 
-    <?php if(count($results) > 0): ?>
-     <div class = "list-account"> 
-        <?php foreach ($results as $r):?>
-            <div class = "list-account-balance">
-                <div>
-                    <div> Account Number </div>
-                    <div><?php safer_echo($r["account_number"]);?></div>
-                </div>
-                <div> 
-                    <div>Account Type:</div>
-                    <div><?php safer_echo($r["account_type"]);?></div> 
-                </div>
-                <div> 
-                    <div>Balance:</div>
-                    <div><?php safer_echo($r["balance"]);?></div> 
-                </div> 
-            </div>
-        <?php endforeach; ?>
-     </div>
-    <?php else:?>
-        <p>No results</p>
-    <?php endif;?> 
-</div>
+    <?php if (count($results) > 0): ?>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>  
+            <th scope="col">Account Number</th>
+            <th scope="col">Account Type</th>
+            <th scope="col">Balance</th>
+            <th scope="col">History</th>
+          </tr>
+        </thead>
+        <tbody>
+      <?php foreach ($results as $r): ?>
+          <tr>
+            <th scope="row"><?php safer_echo($r["account_number"]); ?></th>
+            <td><?php safer_echo(ucfirst($r["account_type"])); ?>
+             </td>
+            <td>$<?php safer_echo(abs($r["balance"])); ?><br></td>
+            <td><a href="view_transactions.php?id=<?php safer_echo($r["id"]); ?>" class="btn btn-success">Transactions</a></td>
+          </tr>
+      <?php endforeach; ?>
+        </tbody>
+      </table>
+    <?php else: ?>
+      <p>You don't have any accounts.</p>
+    <?php endif; ?>
+
 <?php require(__DIR__ . "/partials/flash.php");?>
