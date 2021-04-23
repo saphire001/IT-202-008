@@ -8,13 +8,13 @@ if (!has_role("Admin")) {
 ?>
 <?php
 if(isset($_POST["create"])){
-    $AN = $_POST["account_number"];
     $ATy = $_POST["account_type"]; 
     $BA = $_POST["balance"]; 
     $user = get_user_id();
     $db = getDB();
     
     $stmt = $db -> prepare ("INSERT INTO Accounts (account_number, account_type, balance, user_id) VALUES (:AN, :ATy, :BA, :user)"); 
+    $AN = rand(000000000001, 999999999999);
     $r = $stmt -> execute ([":AN"=>$AN, ":ATy"=>$ATy, ":BA"=>$BA, ":user"=>$user]);  
 
     if($r){
@@ -26,9 +26,8 @@ if(isset($_POST["create"])){
 	}
 }
 ?>
+
 <form method="POST">
-    <label>Account Number</label>
-    <input type = "number" name = "account_number"  required maxlength="12"/>
     <label>Account Type</label>
     <input type = "text" name = "account_type"  required maxlength="20"/>
     <label>Balance</label>
