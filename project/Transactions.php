@@ -14,7 +14,7 @@ if (!is_logged_in()) {
   }
   
   $user = get_user_id();
-  $db = getDB()
+  $db = getDB();
 
   $stmt = $db -> prepare("SELECT * FROM Accounts WHERE user_id = :id AND active = 1"); 
   $stmt -> execute([':id' => $user]); 
