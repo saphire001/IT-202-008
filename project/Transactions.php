@@ -72,11 +72,11 @@ if (!is_logged_in()) {
 </ul> 
 
 <form method="POST">
-<?php if (count($results) > 0): ?>
+<?php if (count($result) > 0): ?>
   <div class="form-group">
     <label for="account"><?php echo $type == 'transfer' ? 'Account Source' : 'Account'; ?></label>
     <select class="form-control" id="account" name="<?php echo $type == 'transfer' ? 'account_src' : 'account'; ?>">
-      <?php foreach ($results as $r): ?>
+      <?php foreach ($result as $r): ?>
       <?php if ($r["account_type"] != "loan"): ?>
       <option value="<?php safer_echo($r["id"]); ?>">
         <?php safer_echo($r["account_number"]); ?> | <?php safer_echo($r["account_type"]); ?> | <?php safer_echo($r["balance"]); ?>
@@ -86,11 +86,11 @@ if (!is_logged_in()) {
     </select>
   </div>
   <?php endif; ?>
-  <?php if (count($results) > 0 && $type == 'transfer'): ?>
+  <?php if (count($result) > 0 && $type == 'transfer'): ?>
   <div class="form-group">
     <label for="account">Account Destination</label>
     <select class="form-control" id="account" name="account_dest">
-      <?php foreach ($results as $r): ?>
+      <?php foreach ($result as $r): ?>
       <option value="<?php safer_echo($r["id"]); ?>">
         <?php safer_echo($r["account_number"]); ?> | <?php safer_echo($r["account_type"]); ?> | <?php safer_echo($r["balance"]); ?>
       </option>
