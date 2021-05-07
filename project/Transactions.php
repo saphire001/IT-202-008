@@ -39,6 +39,22 @@ if (!is_logged_in()) {
       }
       $r = changeBalance($db, $account, 1, 'withdraw', $balance, $memo);
     }
+    if($type == 'transfer')  {
+      $account_src = $_POST["account_src"];
+      $account_dest = $_POST["account_dest"];
+      if($account_src == $account_dest){
+        flash("Cannot transfer to same account!");
+        die(header("Location: transaction.php?type=transfer"));
+      }
+      $stmt = $db->prepare('SELECT balance FROM Accounts WHERE id = :id');
+      $stmt->execute([':id' => $account_src]);
+      $acct = $stmt->fetch(PDO::FETCH_ASSOC);
+      if($acct["balance"] < $balance) {
+        flash("Not enough funds to transfer!");
+        die(header("Location: transaction.php?type=transfer"));
+      }
+      $r = changeBalance($db, $account_src, $account_dest, 'transfer', $balance, $memo);
+    }
     if ($r) {
       flash("Successfully executed transaction.");
     } 
@@ -52,6 +68,7 @@ if (!is_logged_in()) {
 <ul class="nav nav-pills justify-content-center mt-4 mb-2">
   <li class="nav-item"><a class="nav-link <?php echo $type == 'deposit' ? 'active' : ''; ?>" href="?type=deposit">Deposit</a></li>
   <li class="nav-item"><a class="nav-link <?php echo $type == 'withdraw' ? 'active' : ''; ?>" href="?type=withdraw">Withdraw</a></li>
+  <li class="nav-item"><a class="nav-link <?php echo $type == 'transfer' ? 'active' : ''; ?>" href="?type=transfer">Transfer</a></li>
 </ul> 
 
 <form method="POST">
