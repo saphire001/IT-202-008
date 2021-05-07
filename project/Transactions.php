@@ -1,5 +1,6 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 <?php
+ob_start();
 if (!is_logged_in()) {
     //this will redirect to login and kill the rest of this script (prevent it from executing)
     flash("You don't have permission to access this page");
@@ -45,7 +46,13 @@ if (!is_logged_in()) {
       flash("Error doing transaction!");
     }
   }
+  ob_end_flush();
 ?>
+
+<ul class="nav nav-pills justify-content-center mt-4 mb-2">
+  <li class="nav-item"><a class="nav-link <?php echo $type == 'deposit' ? 'active' : ''; ?>" href="?type=deposit">Deposit</a></li>
+  <li class="nav-item"><a class="nav-link <?php echo $type == 'withdraw' ? 'active' : ''; ?>" href="?type=withdraw">Withdraw</a></li>
+</ul> 
 
 <form method="POST">
   <?php if (count($results) > 0): ?>
