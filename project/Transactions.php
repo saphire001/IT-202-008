@@ -48,11 +48,37 @@ if (!is_logged_in()) {
 ?>
 
 <form method="POST">
-<div class="form-group">
+  <?php if (count($results) > 0): ?>
+  <div class="form-group">
+    <label for="account"><?php echo $type == 'transfer' ? 'Account Source' : 'Account'; ?></label>
+    <select class="form-control" id="account" name="<?php echo $type == 'transfer' ? 'account_src' : 'account'; ?>">
+      <?php foreach ($results as $r): ?>
+      <?php if ($r["account_type"] != "loan"): ?>
+      <option value="<?php safer_echo($r["id"]); ?>">
+        <?php safer_echo($r["account_number"]); ?> | <?php safer_echo($r["account_type"]); ?> | <?php safer_echo($r["balance"]); ?>
+      </option>
+      <?php endif; ?>
+      <?php endforeach; ?>
+    </select>
+  </div>
+  <?php endif; ?>
+  <?php if (count($results) > 0 && $type == 'transfer'): ?>
+  <div class="form-group">
+    <label for="account">Account Destination</label>
+    <select class="form-control" id="account" name="account_dest">
+      <?php foreach ($results as $r): ?>
+      <option value="<?php safer_echo($r["id"]); ?>">
+        <?php safer_echo($r["account_number"]); ?> | <?php safer_echo($r["account_type"]); ?> | <?php safer_echo($r["balance"]); ?>
+      </option>
+      <?php endforeach; ?>
+    </select>
+  </div>
+  <?php endif; ?>
+  <div class="form-group">
     <label for="deposit">Amount</label>
     <div class="input-group">
       <div class="input-group-prepend">
-      <span class="input-group-text">$</span>
+        <span class="input-group-text">$</span>
       </div>
       <input type="number" class="form-control" id="deposit" min="0.00" name="balance" step="0.01" placeholder="0.00"/>
     </div>
