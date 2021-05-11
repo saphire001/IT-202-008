@@ -64,8 +64,9 @@ if (isset($_POST["saved"])) {
         }
     }
     if ($isValid) {
-        $stmt = $db->prepare("UPDATE Users set email = :email, username= :username where id = :id");
-        $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
+        $stmt = $db->prepare("UPDATE Users set email = :email, username= :username, first_name = :first_name, last_name = :last_name where id = :id");
+        $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id(), ":first_name" => $_POST["first_name"],
+        ":last_name" => $_POST["last_name"],]);
         if ($r) {
             flash("Updated profile");
         }
@@ -90,7 +91,7 @@ if (isset($_POST["saved"])) {
             }
         }
 //fetch/select fresh data in case anything changed
-        $stmt = $db->prepare("SELECT email, username from Users WHERE id = :id LIMIT 1");
+        $stmt = $db->prepare("SELECT email, username, first_name, last_name from Users WHERE id = :id LIMIT 1");
         $stmt->execute([":id" => get_user_id()]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
@@ -99,6 +100,8 @@ if (isset($_POST["saved"])) {
             //let's update our session too
             $_SESSION["user"]["email"] = $email;
             $_SESSION["user"]["username"] = $username;
+            $_SESSION["user"]["first_name"] = $result["first_name"];
+            $_SESSION["user"]["last_name"] = $result["last_name"];
         }
     }
     else {
@@ -114,6 +117,10 @@ if (isset($_POST["saved"])) {
         <input type="email" name="email" value="<?php safer_echo(get_email()); ?>"/>
         <label for="username">Username</label>
         <input type="text" maxlength="60" name="username" value="<?php safer_echo(get_username()); ?>"/>
+        <label for="first name">First Name</lable>
+        <input type="text" name="first_name" maxlength="60" value="<?php safer_echo(get_first_name()); ?>">
+        <label for="last name">Last Name</label> 
+        <input type="text" name="last_name" maxlength="60" value="<?php safer_echo(get_last_name()); ?>">
         <!-- DO NOT PRELOAD PASSWORD-->
         <label for="pw">Password</label>
         <input type="password" name="password"/>
