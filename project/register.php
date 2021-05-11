@@ -48,7 +48,7 @@ if (isset($_POST["register"])) {
             //here we'll use placeholders to let PDO map and sanitize our data
             $stmt = $db->prepare("INSERT INTO Users(email, username, password, first_name, last_name) VALUES(:email,:username, :password, :first_name, :last_name)");
             //here's the data map for the parameter to data
-            $params = array(":email" => $email, ":username" => $username, ":password" => $hash,  ":first_name" => $first_name, ":last_name" => $last_name);
+            $params = array(":email" => $email, ":username" => $username, ":password" => $hash, ":first_name" => $first_name, ":last_name" => $last_name);
             $r = $stmt->execute($params);
             $e = $stmt->errorInfo();
             if ($e[0] == "00000") {
@@ -81,9 +81,9 @@ if (!isset($username)) {
         <input type="email" id="email" name="email" required value="<?php safer_echo($email); ?>"/>
         <label for="user">Username:</label>
         <input type="text" id="user" name="username" required maxlength="60" value="<?php safer_echo($username); ?>"/>
-        <lable for="first name"> First Name</lable> 
+        <label for="first_name"> First Name</label> 
         <input type="text" id="first_name" name="first_name" required maxlength="60"> 
-        <lable for="last name"> Last Name</lable> 
+        <label for="last_name"> Last Name</label> 
         <input type="text" id="last_name" name="last_name" required maxlength="60">   
         <label for="p1">Password:</label>
         <input type="password" id="p1" name="password" required/>
