@@ -41,7 +41,7 @@ function get_user_id() {
 
 function get_first_name()
 {
-  if (is_logged_in() && isset($_SESSION["user"]["id"])) {
+  if (is_logged_in() && isset($_SESSION["user"]["first_name"])) {
     return $_SESSION["user"]["first_name"];
   }
   return -1;
@@ -49,7 +49,7 @@ function get_first_name()
 
 function get_last_name()
 {
-  if (is_logged_in() && isset($_SESSION["user"]["id"])) {
+  if (is_logged_in() && isset($_SESSION["user"]["last_name"])) {
     return $_SESSION["user"]["last_name"];
   }
   return -1;
