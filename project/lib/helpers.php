@@ -55,6 +55,14 @@ function get_last_name()
   return -1;
 }
 
+function get_privacy()
+{
+  if (is_logged_in() && isset($_SESSION["user"]["privacy"])) {
+    return $_SESSION["user"]["privacy"];
+  }
+  return -1;
+}
+
 function get_name()
 {
   if (is_logged_in() && isset($_SESSION["user"]["id"])) {
