@@ -17,7 +17,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
         <li><a href="Accounts.php">Accounts</a></li> 
         <li><a href="Transactions.php">Transactions</a></li>
         <li><a href="transaction_out.php">Transfers</a></li>
-        <li><a herf="Create_Loan.php">Create Loan</a></li>
+        <li><a href="Create_Loan.php">Create Loans</a></li>
         <li><a href="logout.php">Logout</a></li>
         
     <?php endif; ?>
