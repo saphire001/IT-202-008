@@ -13,11 +13,9 @@ if (isset($_GET["type"])) {
   $type = 'deposit';
 }
 
-// init db
 $user = get_user_id();
 $db = getDB();
 
-// Get user accounts
 $stmt = $db->prepare("SELECT id, account_number, account_type, balance FROM Accounts WHERE user_id = :id AND account_type NOT LIKE 'loan' AND active = 1");
 $stmt->execute([':id' => $user]);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
