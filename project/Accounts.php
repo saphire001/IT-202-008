@@ -26,10 +26,6 @@ if (isset($_POST["search"]) && !empty($query)) {
 ob_end_flush();
 ?>
 
-<form method = "POST">
-    <input name = "query" placeholder = "Search" value = "<?php safer_echo($query);?>"/>
-    <input type = "submit" value = "Search" name = "search"/>
-</form>
 <h3 class="text-center mt-4 mb-4">Accounts</h3>
 >
 
