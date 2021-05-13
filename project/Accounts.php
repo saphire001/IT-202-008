@@ -7,22 +7,18 @@ if (!is_logged_in()) {
   die(header("Location: login.php"));
 }
 
-$query = "";
-$results = [];
-if (isset($_POST["query"])) {
-    $query = $_POST["query"];
-}
-if (isset($_POST["search"]) && !empty($query)) {
-    $db = getDB(); 
-    $stmt = $db -> prepare("SELECT account_number, account_type, balance from Accounts Where user_id like :q LIMIT 5"); 
-    $r = $stmt -> execute([":q" => "%$query%"]); 
-    if($r){
-        $results = $stmt -> fetchAll(PDO::FETCH_ASSOC); 
+  $db = getDB(); 
+  $users = get_user_id();
+  $stmt = $db -> prepare("SELECT Accounts.id, account_number, account_type, balance, last_updated, APY FROM Accounts JOIN Users 
+  ON Accounts.user_id = Users.id WHERE Users.id = :q AND active = 1 ORDER BY Accounts.id"); 
+  $r = $stmt -> execute([":q" => "$users"]); 
+  if($r){
+      $results = $stmt -> fetchAll(PDO::FETCH_ASSOC); 
     } 
     else{
+      $resutls = []; 
         flash("Issue with fetching data");
     }
-}
 ob_end_flush();
 ?>
 
@@ -44,6 +40,9 @@ ob_end_flush();
           <tr>
             <th scope="row"><?php safer_echo($r["account_number"]); ?></th>
             <td><?php safer_echo(ucfirst($r["account_type"])); ?>
+            <?php if ($r["APY"] != 0): ?>
+              <br><small>APY: <?php safer_echo($r["APY"]); ?>%</small>
+            <?php endif; ?>  
             </td>
             <td>$<?php safer_echo(abs($r["balance"])); ?></td>
             <td><a href="view_transactions.php?id=<?php safer_echo($r["id"]); ?>" class="btn btn-success">Transactions</a></td>
