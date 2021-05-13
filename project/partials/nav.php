@@ -13,9 +13,13 @@ require_once(__DIR__ . "/../lib/helpers.php");
     <?php if (is_logged_in()): ?>
         <li><a href="profile.php">Profile</a></li>
         <li><a href="test_create_accounts.php">Create Account</a></li>
+        <li><a href="Close_Account.php">Close Account</a></li>
         <li><a href="Accounts.php">Accounts</a></li> 
         <li><a href="Transactions.php">Transactions</a></li>
+        <li><a href="transaction_out.php">Transfers</a></li>
+        <li><a herf="Create_Loan.php">Create Loan</a></li>
         <li><a href="logout.php">Logout</a></li>
+        
     <?php endif; ?>
 </ul>
 </nav>
