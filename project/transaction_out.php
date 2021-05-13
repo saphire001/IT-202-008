@@ -67,7 +67,7 @@ ob_end_flush();
 
 <form method="POST"> 
 <?php if(count($results) > 0): ?>
-  <label for="account"> Account Source></label>
+  <label for="account"> Account Source</label>
   <select id="account" name="account_src"> 
     <?php foreach($results as $r): ?>
     <option value="<?php safer_echo($r["id"]); ?>">
