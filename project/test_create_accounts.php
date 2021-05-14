@@ -29,7 +29,10 @@ if(isset($_POST["create"])){
 
 <form method="POST">
     <label>Account Type</label>
-    <input type = "text" name = "account_type"  required maxlength="20"/>
+    <select class="form-control" id="account_type" name="account_type">
+      <option value="checking">Checking</option>
+      <option value="savings">Savings</option>
+    </select>
     <label>Balance</label>
     <input type = "number" name = "balance" min = "0.00"/>
     <input type="submit" name="create" value="Create"/>

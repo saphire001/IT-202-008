@@ -26,7 +26,7 @@ if (!is_logged_in()) {
     
     if($type == 'deposit') {
       $account = $_POST["account"];
-      $r = changeBalance($db, 1, $account, 'deposit', $balance, $memo);
+      $r = changeBalance($db, 7, $account, 'deposit', $balance, $memo);
     }
     if($type == 'withdraw')  {
       $account = $_POST["account"];
@@ -37,7 +37,7 @@ if (!is_logged_in()) {
           flash("Not enough funds to withdraw!");
           die(header("Location: transaction.php?type=withdraw"));
       }
-      $r = changeBalance($db, $account, 1, 'withdraw', $balance, $memo);
+      $r = changeBalance($db, $account, 7, 'withdraw', $balance, $memo);
     }
     if($type == 'transfer')  {
       $account_src = $_POST["account_src"];
