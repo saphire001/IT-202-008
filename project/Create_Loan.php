@@ -27,7 +27,7 @@ if (isset($_POST["save"])) {
   $balance = $_POST["balance"];
   if($balance < 500) {
     flash("Minimum balance not entered.");
-    die(header("Location: create_loan.php"));
+    die(header("Location: Create_Loan.php"));
   }
 
   $user = get_user_id();
@@ -38,7 +38,7 @@ if (isset($_POST["save"])) {
   if ($r) {
     changeBalance($db, $db->lastInsertId(), $account_dest, 'deposit', $balance, 'New account deposit');
     flash("Account created successfully with Number: " . $account_number);
-    die(header("Location: accounts.php"));
+    die(header("Location: Accounts.php"));
   } else {
     flash("Error creating account!");
   }
@@ -48,17 +48,17 @@ ob_end_flush();
 
 <form method="POST">
   <div class="form-group">
-    <label for="deposit">Loan Principal</label>
+    <label for="deposit">Loan</label>
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
       </div>
-      <input type="number" class="form-control" id="deposit" min="500.00" name="balance" step="0.01" placeholder="500.00" aria-describedby="depositHelp"/>
+      <input type="number" class="form-control" id="deposit" min="500.00" name="balance" placeholder="500.00" aria-describedby="depositHelp"/>
     </div>
-    <small id="depositHelp" class="form-text text-muted">Minimum $500 required.</small>
+    <small id="depositHelp" class="form-text text-muted">Min of $500 .</small>
   </div>
   <div class="form-group">
-    <label for="account_dest">Deposit to Account</label>
+    <label for="account_dest">Account</label>
     <select class="form-control" id="account_dest" name="account_dest">
       <?php foreach ($accounts as $r): ?>
       <option value="<?php safer_echo($r["id"]); ?>">
@@ -73,9 +73,9 @@ ob_end_flush();
       <div class="input-group-prepend">
         <span class="input-group-text">%</span>
       </div>
-      <input type="number" class="form-control" id="apy" min="2.00" name="apy" step="0.0001" placeholder="5.00" aria-describedby="depositHelp"/>
+      <input type="number" class="form-control" id="apy" min="2.00" name="apy" placeholder="2.00" aria-describedby="depositHelp"/>
     </div>
-    <small id="apyHelp" class="form-text text-muted">Minimum 2% APY.</small>
+    <small id="apyHelp" class="form-text text-muted">Min 2% APY.</small>
   </div>
   <button type="submit" name="save" value="create" class="btn btn-primary">Create</button>
 </form>

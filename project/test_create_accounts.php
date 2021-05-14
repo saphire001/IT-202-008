@@ -15,7 +15,7 @@ if(isset($_POST["create"])){
 
     if($BA < 5) {
         flash("Minimum balance not deposited.");
-        die(header("Location: create_account.php"));
+        die(header("Location: test_create_accounts.php"));
     }
 
     if($ATy == "savings"){
