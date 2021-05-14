@@ -42,6 +42,7 @@ if (isset($_POST["save"])) {
   flash(var_export($last_name, true));
   flash(var_export($account_dest, true));
   flash(var_export($account_src, true));
+  flash(var_export($results, true));
 
   if($account_src == $account_dest["id"] || $account_dest["username"] == get_username()) {
     flash("Cannot transfer to the same user!");
