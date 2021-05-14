@@ -58,7 +58,7 @@ if (isset($_POST["save"])) {
   $acct = $stmt->fetch(PDO::FETCH_ASSOC);
   if($acct["balance"] < $balance) {
     flash("Not enough funds to transfer!");
-    die(header("Location: transaction.php?type=transfer"));
+    die(header("Location: transaction_out.php"));
   }
   $r = changeBalance($db, $account_src, $account_dest["id"], 'ext-transfer', $balance, $memo);
   
