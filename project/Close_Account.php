@@ -1,5 +1,4 @@
 <?php
-ob_start();
 require_once __DIR__ . "/partials/nav.php";
 if (!is_logged_in()) {
   //this will redirect to login and kill the rest of this script (prevent it from executing)
@@ -30,12 +29,11 @@ if (isset($_POST["save"])) {
   $r = $stmt->execute([ ":id" => $id ]);
   if ($r) {
     flash("Account ".$account["account_number"]." successfully closed.");
-    die(header("Location: accounts.php"));
+    die(header("Location: Accounts.php"));
   } else {
     flash("Error closing account!");
   }
 }
-ob_end_flush();
 ?>
 
 <form method="POST">

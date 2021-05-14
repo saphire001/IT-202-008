@@ -12,10 +12,21 @@ if(isset($_POST["create"])){
     $BA = $_POST["balance"]; 
     $user = get_user_id();
     $db = getDB();
+
+    if($BA < 5) {
+        flash("Minimum balance not deposited.");
+        die(header("Location: create_account.php"));
+    }
+
+    if($ATy == "savings"){
+        $apy = $BA / 10000;
+    } else {
+        $apy = 0;
+    }
     
-    $stmt = $db -> prepare ("INSERT INTO Accounts (account_number, account_type, balance, user_id) VALUES (:AN, :ATy, :BA, :user)"); 
+    $stmt = $db -> prepare ("INSERT INTO Accounts (account_number, account_type, balance, user_id, APY) VALUES (:AN, :ATy, :BA, :user, :apy)"); 
     $AN = rand(000000000001, 999999999999);
-    $r = $stmt -> execute ([":AN"=>$AN, ":ATy"=>$ATy, ":BA"=>$BA, ":user"=>$user]);  
+    $r = $stmt -> execute ([":AN"=>$AN, ":ATy"=>$ATy, ":BA"=>$BA, ":user"=>$user, ":apy"=>$apy]);  
 
     if($r){
 		flash("Created successfully with id: " . $db->lastInsertId());
