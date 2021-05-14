@@ -38,12 +38,6 @@ if (isset($_POST["save"])) {
   $stmt->execute([':last_name' => $last_name, ':last_four' => "%$last_four"]);
   $account_dest = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  flash(var_export($last_four, true));
-  flash(var_export($last_name, true));
-  flash(var_export($account_dest, true));
-  flash(var_export($account_src, true));
-  flash(var_export($results, true));
-
   if($account_src == $account_dest["id"] || $account_dest["username"] == get_username()) {
     flash("Cannot transfer to the same user!");
     die(header("Location: transaction_out.php"));
