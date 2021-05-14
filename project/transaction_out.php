@@ -84,7 +84,7 @@ ob_end_flush();
 <div class="row">
  <div class="col-sm">
    <label for="last_name"> Dest Last Name </label>
-   <input type="text" id="last_name" maxlength="60">
+   <input type="text" id="last_name" name="last_name" maxlength="60">
   </div>
   <div class="col-sm"> 
    <label for="last_four"> Dest Last Four Digits </label> 
